@@ -5,26 +5,26 @@ jenkins:
       users:
         - id: ${JENKINS_ADMIN_ID}
           password: ${JENKINS_ADMIN_PASSWORD}
-  clouds:
-    - amazonEC2:
-        name: "ec2"
-        instanceCapStr: 20
-        # this shouldn't be needed, since without explicit creds this should already be used
-        # but let's be explicit to avoid issues.
-        useInstanceProfileForCredentials: true
-        # Reminder: the following key has multiple lines
-        sshKeysCredentialsId: "hello"
-        noDelayProvisioning: true
-        region: "ap-south-1"
-        templates:
-          - description: "Auto configured EC2 Agent Small"
-            type: "T2Small"
-            labelString: "Small"
-            <<: *x-ec2_anchor
-          - description: "Auto configured EC2 Agent Large"
-            type: "T2Xlarge"
-            labelString: "Large"
-            <<: *x-ec2_anchor          
+  # clouds:
+  #   - amazonEC2:
+  #       name: "ec2"
+  #       instanceCapStr: 20
+  #       # this shouldn't be needed, since without explicit creds this should already be used
+  #       # but let's be explicit to avoid issues.
+  #       useInstanceProfileForCredentials: true
+  #       # Reminder: the following key has multiple lines
+  #       sshKeysCredentialsId: "hello"
+  #       noDelayProvisioning: true
+  #       region: "ap-south-1"
+  #       templates:
+  #         - description: "Auto configured EC2 Agent Small"
+  #           type: "T2Small"
+  #           labelString: "Small"
+  #           <<: *x-ec2_anchor
+  #         - description: "Auto configured EC2 Agent Large"
+  #           type: "T2Xlarge"
+  #           labelString: "Large"
+  #           <<: *x-ec2_anchor          
 unclassified:
   location:
     url: http://13.232.193.127:8081/
