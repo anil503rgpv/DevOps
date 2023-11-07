@@ -5,26 +5,56 @@ jenkins:
       users:
         - id: ${JENKINS_ADMIN_ID}
           password: ${JENKINS_ADMIN_PASSWORD}
-  # clouds:
-  #   - amazonEC2:
-  #       name: "ec2"
-  #       instanceCapStr: 20
-  #       # this shouldn't be needed, since without explicit creds this should already be used
-  #       # but let's be explicit to avoid issues.
-  #       useInstanceProfileForCredentials: true
-  #       # Reminder: the following key has multiple lines
-  #       sshKeysCredentialsId: "hello"
-  #       noDelayProvisioning: true
-  #       region: "ap-south-1"
-  #       templates:
-  #         - description: "Auto configured EC2 Agent Small"
-  #           type: "T2Small"
-  #           labelString: "Small"
-  #           <<: *x-ec2_anchor
-  #         - description: "Auto configured EC2 Agent Large"
-  #           type: "T2Xlarge"
-  #           labelString: "Large"
-  #           <<: *x-ec2_anchor          
+  clouds:
+    - amazonEC2:
+        cloudName: "Amazon LinuxEC2"
+        region: "ap-south-1"
+        sshKeysCredentialsId: "hello"
+        templates:
+          - ami: "ami-0100c8a8309686e55"
+            amiType:
+              unixData:
+                sshPort: "22"
+            associatePublicIp: true
+            connectBySSHProcess: false
+            connectionStrategy: PRIVATE_IP
+            deleteRootOnTermination: true
+            description: "Jenkins-slave ami"
+            ebsEncryptRootVolume: DEFAULT
+            ebsOptimized: false
+            # hostKeyVerificationStrategy: ACCEPT_NEW
+            iamInstanceProfile: "arn:aws:iam::934009427687:instance-profile/jenkins-ec2-role"
+            idleTerminationMinutes: "2"
+            javaPath: "java"
+            labelString: "aws"
+            maxTotalUses: -1
+            metadataEndpointEnabled: true
+            metadataHopsLimit: 1
+            metadataTokensRequired: false
+            minimumNumberOfInstances: 0
+            minimumNumberOfSpareInstances: 0
+            mode: NORMAL
+            monitoring: false
+            numExecutors: 5
+            remoteAdmin: "ec2-user"
+            remoteFS: "/home/ec2-user"
+            securityGroups: "sg-0512aa411c500d860"
+            stopOnTerminate: false
+            t2Unlimited: false
+            tags:
+              - name: "Name"
+                value: "Jenkins-Slave-Machine"
+              - name: "managedBy"
+                value: "Jenkins"
+              - name: "usedBy"
+                value: "Jenkins"
+            tenancy: Default
+            type: M5aLarge
+            useEphemeralDevices: false
+        useInstanceProfileForCredentials: true
+        # Reminder: the following key has multiple lines
+        noDelayProvisioning: true
+            
 unclassified:
   location:
     url: http://13.232.193.127:8081/
