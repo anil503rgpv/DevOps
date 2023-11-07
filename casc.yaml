@@ -5,55 +5,55 @@ jenkins:
       users:
         - id: ${JENKINS_ADMIN_ID}
           password: ${JENKINS_ADMIN_PASSWORD}
-  clouds:
-    - amazonEC2:
-        cloudName: "Amazon LinuxEC2"
-        region: "ap-south-1"
-        sshKeysCredentialsId: "hello"
-        templates:
-          - ami: "ami-0100c8a8309686e55"
-            amiType:
-              unixData:
-                sshPort: "22"
-            associatePublicIp: true
-            connectBySSHProcess: false
-            connectionStrategy: PRIVATE_IP
-            deleteRootOnTermination: true
-            description: "Jenkins-slave ami"
-            ebsEncryptRootVolume: DEFAULT
-            ebsOptimized: false
-            # hostKeyVerificationStrategy: ACCEPT_NEW
-            iamInstanceProfile: "arn:aws:iam::934009427687:instance-profile/jenkins-ec2-role"
-            idleTerminationMinutes: "2"
-            javaPath: "java"
-            labelString: "aws"
-            maxTotalUses: -1
-            metadataEndpointEnabled: true
-            metadataHopsLimit: 1
-            metadataTokensRequired: false
-            minimumNumberOfInstances: 0
-            minimumNumberOfSpareInstances: 0
-            mode: NORMAL
-            monitoring: false
-            numExecutors: 5
-            remoteAdmin: "ec2-user"
-            remoteFS: "/home/ec2-user"
-            securityGroups: "sg-0512aa411c500d860"
-            stopOnTerminate: false
-            t2Unlimited: false
-            tags:
-              - name: "Name"
-                value: "Jenkins-Slave-Machine"
-              - name: "managedBy"
-                value: "Jenkins"
-              - name: "usedBy"
-                value: "Jenkins"
-            tenancy: Default
-            type: M5aLarge
-            useEphemeralDevices: false
-        useInstanceProfileForCredentials: true
-        # Reminder: the following key has multiple lines
-        noDelayProvisioning: true
+  # clouds:
+  #   - amazonEC2:
+  #       cloudName: "Amazon LinuxEC2"
+  #       region: "ap-south-1"
+  #       sshKeysCredentialsId: "hello"
+  #       templates:
+  #         - ami: "ami-0100c8a8309686e55"
+  #           amiType:
+  #             unixData:
+  #               sshPort: "22"
+  #           associatePublicIp: true
+  #           connectBySSHProcess: false
+  #           connectionStrategy: PRIVATE_IP
+  #           deleteRootOnTermination: true
+  #           description: "Jenkins-slave ami"
+  #           ebsEncryptRootVolume: DEFAULT
+  #           ebsOptimized: false
+  #           # hostKeyVerificationStrategy: ACCEPT_NEW
+  #           iamInstanceProfile: "arn:aws:iam::934009427687:instance-profile/jenkins-ec2-role"
+  #           idleTerminationMinutes: "2"
+  #           javaPath: "java"
+  #           labelString: "aws"
+  #           maxTotalUses: -1
+  #           metadataEndpointEnabled: true
+  #           metadataHopsLimit: 1
+  #           metadataTokensRequired: false
+  #           minimumNumberOfInstances: 0
+  #           minimumNumberOfSpareInstances: 0
+  #           mode: NORMAL
+  #           monitoring: false
+  #           numExecutors: 5
+  #           remoteAdmin: "ec2-user"
+  #           remoteFS: "/home/ec2-user"
+  #           securityGroups: "sg-0512aa411c500d860"
+  #           stopOnTerminate: false
+  #           t2Unlimited: false
+  #           tags:
+  #             - name: "Name"
+  #               value: "Jenkins-Slave-Machine"
+  #             - name: "managedBy"
+  #               value: "Jenkins"
+  #             - name: "usedBy"
+  #               value: "Jenkins"
+  #           tenancy: Default
+  #           type: M5aLarge
+  #           useEphemeralDevices: false
+  #       useInstanceProfileForCredentials: true
+  #       # Reminder: the following key has multiple lines
+  #       noDelayProvisioning: true
             
 unclassified:
   location:
