@@ -17,7 +17,7 @@ RUN apt update && apt install  openssh-server sudo -y \
     traceroute \
     wget
 ADD https://dlcdn.apache.org/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz /opt/
-RUN tar -xvf /opt/apache-maven-3.9.5-bin.tar.gz --directory /opt/maven
+RUN mkdir -p /opt/maven && tar -xvf /opt/apache-maven-3.9.5-bin.tar.gz --directory /opt/maven
 user jenkins
 ENV M2_HOME /opt/maven
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
