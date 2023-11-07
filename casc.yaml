@@ -5,6 +5,26 @@ jenkins:
       users:
         - id: ${JENKINS_ADMIN_ID}
           password: ${JENKINS_ADMIN_PASSWORD}
+  clouds:
+    - amazonEC2:
+        name: "ec2"
+        instanceCapStr: 20
+        # this shouldn't be needed, since without explicit creds this should already be used
+        # but let's be explicit to avoid issues.
+        useInstanceProfileForCredentials: true
+        # Reminder: the following key has multiple lines
+        sshKeysCredentialsId: "hello"
+        noDelayProvisioning: true
+        region: "ap-south-1"
+        templates:
+          - description: "Auto configured EC2 Agent Small"
+            type: "T2Small"
+            labelString: "Small"
+            <<: *ec2_anchor
+          - description: "Auto configured EC2 Agent Large"
+            type: "T2Xlarge"
+            labelString: "Large"
+            <<: *ec2_anchor          
 unclassified:
   location:
     url: http://13.232.193.127:8081/
@@ -12,3 +32,40 @@ unclassified:
  #   plugins:
   #    - name: "ant"  # Replace with the actual plugin ID
    #     version: "latest"  # Replace with the desired plugin version
+
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+          id: "hello"
+          privateKeySource:
+            directEntry:
+              privateKey: "{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}"
+          scope: GLOBAL
+          username: "ec2-user"
+x-ec2_anchor: &ec2_anchor
+  associatePublicIp: false
+  connectBySSHProcess: false
+  connectionStrategy: PRIVATE_IP
+  deleteRootOnTermination: false
+  ebsOptimized: false
+  idleTerminationMinutes: "10"
+  maxTotalUses: -1
+  monitoring: false
+  numExecutors: 1
+  stopOnTerminate: false
+  tenancy: Default
+  useEphemeralDevices: false
+  zone: "ap-south-1"
+  ami: "ami-0100c8a8309686e55"
+  securityGroups: "sg-0512aa411c500d860"
+  remoteFS: "/home/ec2-user"
+  remoteAdmin: "ec2-user"
+  mode: "NORMAL"
+  amiType:
+    unixData:
+      rootCommandPrefix: "sudo"
+      slaveCommandPrefix: "sudo -u ec2-user"
+      sshPort: "61120"
+      
