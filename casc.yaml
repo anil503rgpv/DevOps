@@ -59,15 +59,15 @@ unclassified:
   location:
     url: http://13.232.193.127:8081/
 
-  artifactorybuilder:
-    useCredentialsPlugin: true
-    jfrogInstances:
-      - instanceId: artifactory
-        platformUrl: https://jfrogserver11082023.jfrog.io/artifactory
-        artifactoryUrl: https://jfrogserver11082023.jfrog.io/artifactory
-        distributionUrl: https://jfrogserver11082023.jfrog.io/distribution
-        deployerCredentialsConfig:
-          credentialsId: "jfrog"
+  # artifactorybuilder:
+  #   useCredentialsPlugin: true
+  #   jfrogInstances:
+  #     - instanceId: artifactory
+  #       platformUrl: https://jfrogserver11082023.jfrog.io/artifactory
+  #       artifactoryUrl: https://jfrogserver11082023.jfrog.io/artifactory
+  #       distributionUrl: https://jfrogserver11082023.jfrog.io/distribution
+  #       deployerCredentialsConfig:
+  #         credentialsId: "jfrog"
 #  plugin-catalog:
  #   plugins:
   #    - name: "ant"  # Replace with the actual plugin ID
