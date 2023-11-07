@@ -2,7 +2,7 @@ FROM jenkins/jenkins:latest
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 user root
 
-RUN apt-get install -y git \
+RUN apt install -y git \
     curl \
     unzip \
     passwd 
