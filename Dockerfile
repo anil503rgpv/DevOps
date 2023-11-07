@@ -2,10 +2,10 @@ FROM jenkins/jenkins:latest
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 user root
 
-RUN apt install -y git \
-    curl \
-    unzip \
-    passwd 
+# RUN apt install -y git \
+#     curl \
+#     unzip \
+#     passwd 
 RUN apt update && apt install  openssh-server sudo -y \
     dstat \
     lsof  \
