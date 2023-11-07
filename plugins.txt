@@ -19,3 +19,5 @@ timestamper:latest
 workflow-aggregator:latest
 ws-cleanup:latest
 configuration-as-code:latest
+role-strategy:latest
+ec2:latest

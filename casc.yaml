@@ -7,7 +7,7 @@ jenkins:
           password: ${JENKINS_ADMIN_PASSWORD}
 unclassified:
   location:
-    url: http://3.110.221.202:8081/
+    url: http://13.232.193.127:8081/
 #  plugin-catalog:
  #   plugins:
   #    - name: "ant"  # Replace with the actual plugin ID
