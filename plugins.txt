@@ -145,7 +145,6 @@ build-with-parameters:latest
 build-user-vars-plugin:latest
 build-token-root:latest
 build-timeout:latest
-build-publisher:latest
 build-name-setter:latest
 build-failure-analyzer:latest
 build-blocker-plugin:latest
