@@ -155,7 +155,7 @@ tool:
           - installSource:
               installers:
                 - adoptOpenJdkInstaller:
-                    id: "jdk-11+35"
+                    id: "jdk-17+35"
   git:
     installations:
       - name: git
