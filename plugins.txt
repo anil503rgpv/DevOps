@@ -132,7 +132,6 @@ dashboard-view:latest
 credentials:latest
 credentials-binding:latest
 config-file-provider:latest
-config-autorefresh-plugin:latest
 conditional-buildstep:latest
 command-launcher:latest
 code-coverage-api:latest
