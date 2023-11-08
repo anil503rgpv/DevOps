@@ -145,7 +145,6 @@ tool:
   jdk:
     installations:
       - name: jdk11
-        home: "/jdk"
         properties:
           - installSource:
               installers:
