@@ -32,4 +32,5 @@ RUN echo \
   jammy stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && apt-get update
 RUN apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 COPY casc.yaml /var/jenkins_home/casc.yaml
+RUN usermod -aG docker jenkins
 user jenkins
