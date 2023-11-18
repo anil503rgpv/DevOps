@@ -23,14 +23,22 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo systemclt enable docker
 sudo systemclt restart docker
 
-if id "distro" >/dev/null 2>&1; then
-        echo "user distro is available"
-        sudo usermod -aG docker distro
+DOCKER_USER=$1
+DEFAULT_DOCKER_USER="distro"
+if [ -z "$DOCKER_USER" ]; then
+	DOCKER_USER=$DEFAULT_DOCKER_USER
+fi
+
+if id "$DOCKER_USER" >/dev/null 2>&1; then
+        echo "user $DOCKER_USER is available"
+        sudo usermod -aG docker $DOCKER_USER
 else
-        echo "creating distro group"
-        sudo addgroup -gid 1300 distro
-        sudo adduser -u 1100 -gid distro
-        sudo usermod -aG docker distro
-
-
+        echo "creating $DOCKER_USER group"
+        sudo addgroup -gid 1300 $DOCKER_USER
+        echo "Creating $DOCKER_USER user"
+        sudo adduser -u 1100 -gid $DOCKER_USER
+        echo "adding docker group to user $DOCKER_USER"
+        sudo usermod -aG docker $DOCKER_USER
+        echo "Providing root permision to to user $DOCKER_USER"
+        sudo echo "$DOCKER_USER ALL=(ALL) ALL" >> /etc/sudoers
 fi
