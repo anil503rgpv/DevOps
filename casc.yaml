@@ -15,7 +15,7 @@ jenkins:
               - "Overall/Read"
               - "Job/Read"
             entries:
-              - user: "authenticated"
+              - user: ${JENKINS_READ_ONLY_ID}
   securityRealm:
     local:
       allowsSignup: false
@@ -33,6 +33,7 @@ jenkins:
         templates:
           - labelString: "docker-agent"
             dockerTemplateBase:
+              pullCredentialsId: "jfrog"
               # TODO: pin sha256 or versions when using in production
               image:  "jfrogsever11082023.jfrog.io/demo-docker-local/jenkins-slave:latest"       # default docker image "jenkins/agent"
               mounts:
