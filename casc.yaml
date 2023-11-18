@@ -39,6 +39,9 @@ jenkins:
                 - "type=tmpfs,destination=/run"
                 - "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
                 - "type=volume,src=hello,dst=/world"
+                - "type=volume, src=/home/distro/.ssh,destination=/home/distro/.ssh"
+                - "type=volume, src=/home/distro/.docker,destination=/home/distro/.docker"
+                - "type=volume, src=/home/distro/.m2,destination=/home/distro/.m2"
               environmentsString: |
                 hello=world
                 foo=bar
