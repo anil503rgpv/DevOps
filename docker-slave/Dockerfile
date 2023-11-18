@@ -8,7 +8,7 @@ RUN addgroup -gid 1300 distro \
     && usermod -aG jenkins distro \
     && echo "distro ALL=(ALL) ALL" >> /etc/sudoers
 
-RUN apt-get install ca-certificates curl gnupg -y && install -m 0755 -d /etc/apt/keyrings
+RUN apt-get install ca-certificates curl -y && install -m 0755 -d /etc/apt/keyrings
 RUN mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 RUN chmod a+r /etc/apt/keyrings/docker.gpg
 RUN echo \
