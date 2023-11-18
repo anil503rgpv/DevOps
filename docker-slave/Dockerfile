@@ -61,6 +61,7 @@ VOLUME "${AGENT_WORKDIR}"
 WORKDIR /home/"${user}"
 ENV user=${user}
 
+USER root
 RUN apt-get install ca-certificates curl gnupg -y && install -m 0755 -d /etc/apt/keyrings
 RUN mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 RUN chmod a+r /etc/apt/keyrings/docker.gpg
@@ -70,4 +71,4 @@ RUN echo \
 RUN apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 RUN usermod -aG docker distro
 RUN apt update && apt install -y make
-USER distro
+USER ${user}
