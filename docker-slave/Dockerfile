@@ -1,9 +1,17 @@
-ARG DEBIAN_RELEASE=bookworm-20230904
+ARG UBUNTU_RELEASE=jammy-20231004
 ARG JAVA_VERSION=17.0.8.1_1
 FROM eclipse-temurin:${JAVA_VERSION}-jdk-jammy AS jre-build
 
+RUN $JAVA_HOME/bin/jlink \
+         --add-modules java.base \
+         --strip-debug \
+         --no-man-pages \
+         --no-header-files \
+         --compress=2 \
+         --output /javaruntime
 
-FROM debian:${DEBIAN_RELEASE}-slim AS build
+
+FROM ubuntu:${UBUNTU_RELEASE} AS build
 
 ARG user=distro
 ARG group=distro
