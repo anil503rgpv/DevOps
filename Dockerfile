@@ -31,7 +31,7 @@ RUN chown 1100:1300 /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 COPY casc.yaml /var/jenkins_home/casc.yaml
 RUN  chown 1100:1300 /var/jenkins_home/casc.yaml
-
+RUN apt update && apt install -y make
 USER distro
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
 ENV SSH_PRIVATE_FILE_PATH /home/distro/.ssh/id_ed25519

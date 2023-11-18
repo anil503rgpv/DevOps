@@ -16,5 +16,5 @@ RUN echo \
   jammy stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && apt-get update
 RUN apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 RUN usermod -aG docker jenkins && usermod -aG docker distro
-
+RUN apt update && apt install -y make
 USER distro
