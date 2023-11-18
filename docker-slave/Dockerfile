@@ -21,6 +21,8 @@ ARG gid=1300
 RUN groupadd -g "${gid}" "${group}" \
   && useradd -l -c "Jenkins user" -d /home/"${user}" -u "${uid}" -g "${gid}" -m "${user}"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ARG AGENT_WORKDIR=/home/"${user}"/agent
 ENV TZ=Etc/UTC
 
