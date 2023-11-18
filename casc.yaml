@@ -1,10 +1,29 @@
 jenkins:
+  authorizationStrategy:
+    roleBased:
+      roles:
+        global:
+          - name: "admin"
+            description: "Jenkins administrators"
+            permissions:
+              - "Overall/Administer"
+            entries:
+              - user: ${JENKINS_ADMIN_ID}
+          - name: "readonly"
+            description: "Read-only users"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+            entries:
+              - user: "authenticated"
   securityRealm:
     local:
       allowsSignup: false
       users:
         - id: ${JENKINS_ADMIN_ID}
           password: ${JENKINS_ADMIN_PASSWORD}
+        - id: ${JENKINS_READ_ONLY_ID}
+          password: ${JENKINS_READ_ONLY_PASSWORD}
   clouds:
     - docker:
         name: "docker"
@@ -30,56 +49,6 @@ jenkins:
             instanceCapStr: "10"
             retentionStrategy:
               idleMinutes: 1
-  # clouds:
-  #   - amazonEC2:
-  #       cloudName: "Amazon LinuxEC2"
-  #       region: "ap-south-1"
-  #       sshKeysCredentialsId: "hello"
-  #       templates:
-  #         - ami: "ami-0100c8a8309686e55"
-  #           amiType:
-  #             unixData:
-  #               sshPort: "22"
-  #           associatePublicIp: true
-  #           connectBySSHProcess: false
-  #           connectionStrategy: PRIVATE_IP
-  #           deleteRootOnTermination: true
-  #           description: "Jenkins-slave ami"
-  #           ebsEncryptRootVolume: DEFAULT
-  #           ebsOptimized: false
-  #           # hostKeyVerificationStrategy: ACCEPT_NEW
-  #           iamInstanceProfile: "arn:aws:iam::934009427687:instance-profile/jenkins-ec2-role"
-  #           idleTerminationMinutes: "2"
-  #           javaPath: "java"
-  #           labelString: "aws"
-  #           maxTotalUses: -1
-  #           metadataEndpointEnabled: true
-  #           metadataHopsLimit: 1
-  #           metadataTokensRequired: false
-  #           minimumNumberOfInstances: 0
-  #           minimumNumberOfSpareInstances: 0
-  #           mode: NORMAL
-  #           monitoring: false
-  #           numExecutors: 5
-  #           remoteAdmin: "ec2-user"
-  #           remoteFS: "/home/ec2-user"
-  #           securityGroups: "sg-0512aa411c500d860"
-  #           stopOnTerminate: false
-  #           t2Unlimited: false
-  #           tags:
-  #             - name: "Name"
-  #               value: "Jenkins-Slave-Machine"
-  #             - name: "managedBy"
-  #               value: "Jenkins"
-  #             - name: "usedBy"
-  #               value: "Jenkins"
-  #           tenancy: Default
-  #           type: M5aLarge
-  #           useEphemeralDevices: false
-  #       useInstanceProfileForCredentials: true
-  #       # Reminder: the following key has multiple lines
-  #       noDelayProvisioning: true
-            
 unclassified:
 #  location:
 #    url: http://52.66.238.111:8081/
@@ -114,30 +83,14 @@ credentials:
           id: "jfrog"
           username: admin
           password: "${JFROG_ADMIN_PASSWORD}"
-# x-ec2_anchor: &ec2_anchor
-#   associatePublicIp: false
-#   connectBySSHProcess: false
-#   connectionStrategy: PRIVATE_IP
-#   deleteRootOnTermination: false
-#   ebsOptimized: false
-#   idleTerminationMinutes: "10"
-#   maxTotalUses: -1
-#   monitoring: false
-#   numExecutors: 1
-#   stopOnTerminate: false
-#   tenancy: Default
-#   useEphemeralDevices: false
-#   zone: "ap-south-1"
-#   ami: "ami-0100c8a8309686e55"
-#   securityGroups: "sg-0512aa411c500d860"
-#   remoteFS: "/home/ec2-user"
-#   remoteAdmin: "ec2-user"
-#   mode: "NORMAL"
-#   amiType:
-#     unixData:
-#       rootCommandPrefix: "sudo"
-#       slaveCommandPrefix: "sudo -u ec2-user"
-#       sshPort: "61120"
+      - basicSSHUserPrivateKey:
+          scope: GLOBAL
+          id: github-credential
+          username: anil305rgpv
+          description: "GitHub ssh private key file."
+          privateKeySource:
+            directEntry:
+              privateKey: "${readFile:${SSH_PRIVATE_FILE_PATH}}"
 tool:
   maven:
     installations:

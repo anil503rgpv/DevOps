@@ -33,4 +33,6 @@ RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 
 USER distro
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
-
+ENV SSH_PRIVATE_FILE_PATH /home/distro/.ssh/id_ed25519
+ENV JENKINS_READ_ONLY_ID user
+ENV JENKINS_READ_ONLY_PASSWORD user
