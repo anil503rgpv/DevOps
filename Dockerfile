@@ -27,9 +27,10 @@ RUN echo \
 RUN apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 COPY casc.yaml /var/jenkins_home/casc.yaml
 RUN usermod -aG docker jenkins && usermod -aG docker distro
+COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN chown 1100:1300 /usr/share/jenkins/ref/plugins.txt && chown 1100:1300 /var/jenkins_home/casc.yaml
+RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 
 USER distro
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
-COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
 
