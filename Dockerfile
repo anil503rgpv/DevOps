@@ -8,7 +8,7 @@ RUN addgroup -gid 1300 distro \
     && usermod -aG jenkins distro \
     && echo "distro ALL=(ALL) ALL" >> /etc/sudoers
 
-RUN apt update && apt install  openssh-server sudo -y \
+RUN apt update && apt install  openssh-server \
     dstat \
     lsof  \
     fontconfig \
@@ -16,7 +16,7 @@ RUN apt update && apt install  openssh-server sudo -y \
     rsync \
     strace \
     traceroute \
-    wget
+    wget -y
 
 RUN apt-get install ca-certificates curl gnupg -y && install -m 0755 -d /etc/apt/keyrings
 RUN mkdir -p /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
