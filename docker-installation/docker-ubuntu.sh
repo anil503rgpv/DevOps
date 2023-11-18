@@ -36,7 +36,7 @@ else
         echo "creating $DOCKER_USER group"
         sudo addgroup -gid 1300 $DOCKER_USER
         echo "Creating $DOCKER_USER user"
-        sudo adduser -u 1100 -gid $DOCKER_USER
+        sudo adduser -u 1100 -gid 1300 $DOCKER_USER
         echo "adding docker group to user $DOCKER_USER"
         sudo usermod -aG docker $DOCKER_USER
         echo "Providing root permision to to user $DOCKER_USER"
