@@ -45,10 +45,10 @@ jenkins:
               environmentsString: |
                 hello=world
                 foo=bar
-            remoteFs: "/home/jenkins/agent"
+            remoteFs: "/home/distro/agent"
             connector:
               attach:
-                user: "jenkins"
+                user: "distro"
             instanceCapStr: "10"
             retentionStrategy:
               idleMinutes: 1
