@@ -25,11 +25,12 @@ RUN echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   jammy stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null && apt-get update
 RUN apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-COPY casc.yaml /var/jenkins_home/casc.yaml
 RUN usermod -aG docker jenkins && usermod -aG docker distro
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-RUN chown 1100:1300 /usr/share/jenkins/ref/plugins.txt && chown 1100:1300 /var/jenkins_home/casc.yaml
+RUN chown 1100:1300 /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --plugin-file /usr/share/jenkins/ref/plugins.txt
+COPY casc.yaml /var/jenkins_home/casc.yaml
+RUN  chown 1100:1300 /var/jenkins_home/casc.yaml
 
 USER distro
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
