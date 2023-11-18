@@ -20,8 +20,8 @@ sudo apt-get update
 echo "Installation start"
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
-sudo systemclt enable docker
-sudo systemclt restart docker
+sudo systemctl enable docker
+sudo systemctl restart docker
 
 DOCKER_USER=$1
 DEFAULT_DOCKER_USER="distro"
