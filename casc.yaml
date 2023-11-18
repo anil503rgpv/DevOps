@@ -81,8 +81,8 @@ jenkins:
   #       noDelayProvisioning: true
             
 unclassified:
-  location:
-    url: http://52.66.238.111:8081/
+#  location:
+#    url: http://52.66.238.111:8081/
 
   artifactorybuilder:
     useCredentialsPlugin: true
