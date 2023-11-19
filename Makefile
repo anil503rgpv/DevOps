@@ -1,6 +1,6 @@
-IMAGE_NAME = jenkins-slave-default-agent
+IMAGE_NAME = jenkins-master
 
-MAKE_COMMON ?= ../make-common
+MAKE_COMMON ?= ./make-common
 BUILD_ARGS = MAIL_SECRET_KEY=${MAIL_SECRET_KEY} MAIL_ACCESS_KEY=${MAIL_ACCESS_KEY}
 include $(MAKE_COMMON)/docker.mk
 include $(MAKE_COMMON)/common.mk

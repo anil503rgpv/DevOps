@@ -35,7 +35,7 @@ jenkins:
             dockerTemplateBase:
               pullCredentialsId: "jfrog"
               # TODO: pin sha256 or versions when using in production
-              image:  "jfrogsever11082023.jfrog.io/demo-docker-local/jenkins-slave:latest"       # default docker image "jenkins/agent"
+              image:  "jfrogsever11082023.jfrog.io/demo-docker-local/jenkins-slave-default-agent:latest"       # default docker image "jenkins/agent"
               mounts:
                 - "type=tmpfs,destination=/run"
                 - "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
@@ -85,7 +85,7 @@ credentials:
       - usernamePassword:
           scope: GLOBAL
           id: "jfrog"
-          username: admin
+          username: "${JFROG_ADMIN_USERNAME}"
           password: "${JFROG_ADMIN_PASSWORD}"
       - basicSSHUserPrivateKey:
           scope: GLOBAL
