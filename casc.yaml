@@ -95,6 +95,11 @@ credentials:
           privateKeySource:
             directEntry:
               privateKey: "${readFile:${SSH_PRIVATE_FILE_PATH}}"
+      - string:
+          scope: GLOBAL
+          id: "sonar"
+          secret: "${SONAR_TOKEN}"
+          description: "sonar admin server"
 tool:
   maven:
     installations:
