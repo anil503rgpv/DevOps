@@ -66,10 +66,20 @@ unclassified:
         distributionUrl: https://jfrogsever11082023.jfrog.io/distribution
         deployerCredentialsConfig:
           credentialsId: "jfrog"
-#  plugin-catalog:
- #   plugins:
-  #    - name: "ant"  # Replace with the actual plugin ID
-   #     version: "latest"  # Replace with the desired plugin version
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+    installations:
+      - credentialsId: "sonar"
+        name: "sonar"
+        serverUrl: "http://139.59.51.114:9000"
+        triggers:
+          skipScmCause: false
+          skipUpstreamCause: false
+security:
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "acceptFirstConnectionStrategy"
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
 
 credentials:
   system:
