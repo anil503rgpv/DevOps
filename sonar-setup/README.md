@@ -4,13 +4,13 @@
 * Docker software should be installed on host
 * Create docker volume path and permission
   ```
-    mkdir -p /data/sonar-data/data
-    mkdir -p /data/sonar-data/extensions
-    mkdir -p /data/sonar-data/logs
-    mkdir -p /data/postgres/postgresql
-    mkdir -p /data/postgres/data
-    chmod 777 -R /data
-    chown distro:distro -R /data
+    sudo mkdir -p /data/sonar-data/data
+    sudo mkdir -p /data/sonar-data/extensions
+    sudo mkdir -p /data/sonar-data/logs
+    sudo mkdir -p /data/postgres/postgresql
+    sudo mkdir -p /data/postgres/data
+    sudo chmod 777 -R /data
+    sudo chown distro:distro -R /data
   ```
 
 ## Running sonar server
