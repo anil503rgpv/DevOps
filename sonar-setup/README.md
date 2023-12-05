@@ -18,3 +18,8 @@
   cd sonar-setup
   docker compose up -d
 ```
+#### Default credential for Sonarqube
+```
+  username: admin
+  password: admin
+```
