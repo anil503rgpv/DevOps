@@ -43,6 +43,7 @@ services:
     environment:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
     volumes:
       - /data/postgres/postgresql:/var/lib/postgresql
       - /data/postgres/data:/var/lib/postgresql/data
