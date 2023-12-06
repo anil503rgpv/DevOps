@@ -47,6 +47,7 @@ services:
     volumes:
       - /data/postgres/postgresql:/var/lib/postgresql
       - /data/postgres/data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   nginx:
     image: nginx:latest
     container_name: nginx
