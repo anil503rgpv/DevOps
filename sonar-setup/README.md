@@ -34,4 +34,4 @@ Install Certbot and obtain an SSL certificate for your domain.
   # Obtain SSL certificate
   sudo certbot certonly --standalone -d sonar.shivaantainfotech.com
 ```
-Output: 
+Output: ![image](https://github.com/anil503rgpv/DevOps/assets/36809011/f8518cfc-0ee6-412c-a6a4-24c205ae79c4)
