@@ -32,5 +32,6 @@ Install Certbot and obtain an SSL certificate for your domain.
   sudo apt-get install certbot
 
   # Obtain SSL certificate
-  sudo certbot certonly --nginx -d sonar.shivaantainfotech.com
+  sudo certbot certonly --standalone -d sonar.shivaantainfotech.com
 ```
+Output: 
