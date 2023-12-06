@@ -58,7 +58,7 @@ services:
     depends_on:
       - sonarqube
     networks:
-      - sonarqube-net
+      - sonar-net
 
 networks:
   sonar-net:
