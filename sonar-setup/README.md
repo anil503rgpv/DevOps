@@ -23,3 +23,14 @@
   username: admin
   password: admin
 ```
+
+## Obtain SSL Certificate using Certbot:
+Install Certbot and obtain an SSL certificate for your domain.
+```
+  # Install Certbot
+  sudo apt-get update
+  sudo apt-get install certbot
+
+  # Obtain SSL certificate
+  sudo certbot certonly --nginx -d sonar.shivaantainfotech.com
+```
