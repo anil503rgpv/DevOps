@@ -16,18 +16,6 @@ services:
       - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/sonar?currentSchema=sonarqube
       - SONARQUBE_JDBC_USERNAME=sonar
       - SONARQUBE_JDBC_PASSWORD=sonar
-#      - SONAR_SECURITY_REALM=LDAP
-#      - SONAR_AUTHENTICATOR_DOWNCASE=true
-#      - LDAP_URL=ldap://4.188.225.195:636
-#      - LDAP_AUTHENTICATION=simple
-#      - LDAP_REALM=shivaanta.com
-#      - LDAP_STARTTLS=true
-#      - LDAP_USER_BASEDN=cn=users,dc=shivaanta,dc=com
-#      - LDAP_USER_REQUEST=(&(objectClass=user)(sAMAccountName={login}))
-#      - LDAP_USER_REALNAMEATTRIBUTE=name
-#      - LDAP_USER_EMAILATTRIBUTE=email
-#      - LDAP_GROUP_BASEDN=cn=groups,dc=shivaanta,dc=com
-#      - LDAP_GROUP_IDATTRIBUTE=sAMAccountName
     volumes:
       - /data/sonar-data/data:/opt/sonarqube/data
       - /data/sonar-data/extensions:/opt/sonarqube/extensions
