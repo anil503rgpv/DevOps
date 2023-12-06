@@ -1,10 +1,10 @@
 -- init.sql
 
 -- Create schema
-CREATE SCHEMA sonarqube;
+CREATE SCHEMA IF NOT EXISTS sonarqube;
 
 -- Grant permissions to JDBC user on the schema
-GRANT ALL PRIVILEGES, USAGE ON SCHEMA sonarqube TO sonar;
+GRANT ALL PRIVILEGES ON SCHEMA sonarqube TO sonar;
 
 -- Grant permissions to JDBC user on existing and future tables, indices, and triggers in the schema
 ALTER DEFAULT PRIVILEGES IN SCHEMA sonarqube
