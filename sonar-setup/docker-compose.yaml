@@ -1,41 +1,37 @@
-version: "3"
+version: '3'
 
 services:
   sonarqube:
-    image: sonarqube:10.3.0-enterprise
-#    command: -Dsonar.ce.javaOpts=-Xmx1192m -Dsonar.web.javaOpts=-Xmx1192m
-#    restart: unless-stopped
+    image: sonarqube:latest
     container_name: sonarqube
-    depends_on:
-      - sonarqube-db
-    ports:
-      - "9000:9000"
-    networks:
-      - sonar-net
     environment:
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/sonar?currentSchema=sonarqube
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/sonar
       - SONARQUBE_JDBC_USERNAME=sonar
       - SONARQUBE_JDBC_PASSWORD=sonar
     volumes:
-      - /data/sonar-data/data:/opt/sonarqube/data
-      - /data/sonar-data/extensions:/opt/sonarqube/extensions
-      - /data/sonar-data/logs:/opt/sonarqube/logs
-      - ./sonar.properties:/opt/sonarqube/conf/sonar.properties
-  sonarqube-db:
-    image: postgres
-    container_name: sonarqube-db
-#    restart: unless-stopped
-    networks:
-      - sonar-net
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_temp:/opt/sonarqube/temp
     ports:
-      - "5432:5432"
+      - "9000:9000"
+    networks:
+      - sonarqube-network
+    depends_on:
+      - sonarqube-db
+
+  sonarqube-db:
+    image: postgres:latest
+    container_name: sonarqube-db
     environment:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
       - POSTGRES_DB=sonar
     volumes:
       - sonarqube_db:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - sonarqube-network
+
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -44,15 +40,19 @@ services:
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - /etc/letsencrypt:/etc/letsencrypt
+      - /etc/letsencrypt:/etc/letsencrypt  # Mount Let's Encrypt certificates
     depends_on:
       - sonarqube
     networks:
-      - sonar-net
+      - sonarqube-network
 
 networks:
-  sonar-net:
+  sonarqube-network:
     driver: bridge
 
 volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  sonarqube_temp:
   sonarqube_db:
