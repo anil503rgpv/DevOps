@@ -4,7 +4,7 @@ services:
   sonarqube:
     image: sonarqube:10.3.0-enterprise
 #    command: -Dsonar.ce.javaOpts=-Xmx1192m -Dsonar.web.javaOpts=-Xmx1192m
-    restart: unless-stopped
+#    restart: unless-stopped
     container_name: sonarqube
     depends_on:
       - sonarqube-db
@@ -24,7 +24,7 @@ services:
   sonarqube-db:
     image: postgres
     container_name: sonarqube-db
-    restart: unless-stopped
+#    restart: unless-stopped
     networks:
       - sonar-net
     ports:
