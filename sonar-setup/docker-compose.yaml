@@ -27,6 +27,8 @@ services:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
       - POSTGRES_DB=sonar
+    ports:
+      - "5432:5432"
     volumes:
       - sonarqube_db:/var/lib/postgresql/data
     networks:
