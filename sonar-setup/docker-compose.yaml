@@ -33,8 +33,7 @@ services:
       - POSTGRES_PASSWORD=sonar
       - POSTGRES_DB=sonar
     volumes:
-      - /data/postgres/postgresql:/var/lib/postgresql/data
-#      - /data/postgres/data:/var/lib/postgresql/data
+      - sonarqube_db:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   nginx:
     image: nginx:latest
@@ -53,3 +52,6 @@ services:
 networks:
   sonar-net:
     driver: bridge
+
+volumes:
+  sonarqube_db:
