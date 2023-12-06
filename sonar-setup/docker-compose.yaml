@@ -20,6 +20,7 @@ services:
       - /data/sonar-data/data:/opt/sonarqube/data
       - /data/sonar-data/extensions:/opt/sonarqube/extensions
       - /data/sonar-data/logs:/opt/sonarqube/logs
+      - ./sonar.properties:/opt/sonarqube/conf/sonar.properties
   sonarqube-db:
     image: postgres
     container_name: sonarqube-db
