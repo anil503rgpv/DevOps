@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+#    environment:
+#      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/sonar
+#      - SONARQUBE_JDBC_USERNAME=sonar
+#      - SONARQUBE_JDBC_PASSWORD=sonar
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_temp:/opt/sonarqube/temp
+      - ./sonar.properties:/opt/sonarqube/conf/sonar.properties
+    ports:
+      - "9000:9000"
+    networks:
+      - sonarqube-network
+    depends_on:
+      - sonarqube-db
+
+  sonarqube-db:
+    image: postgres:latest
+    container_name: sonarqube-db
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
+    ports:
+      - "5432:5432"
+    volumes:
+      - sonarqube_db:/var/lib/postgresql/data
+    networks:
+      - sonarqube-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt  # Mount Let's Encrypt certificates
+    depends_on:
+      - sonarqube
+    networks:
+      - sonarqube-network
+
+networks:
+  sonarqube-network:
+    driver: bridge
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  sonarqube_temp:
+  sonarqube_db:
