@@ -3,7 +3,7 @@ version: "3"
 services:
   sonarqube:
     image: sonarqube:lts
-    command: -Dsonar.ce.javaOpts=-Xmx1192m -Dsonar.web.javaOpts=-Xmx1192m
+#    command: -Dsonar.ce.javaOpts=-Xmx1192m -Dsonar.web.javaOpts=-Xmx1192m
     restart: unless-stopped
     container_name: sonarqube
     depends_on:
@@ -13,7 +13,7 @@ services:
     networks:
       - sonar-net
     environment:
-      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube_db:5432/sonar
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/sonar
       - SONARQUBE_JDBC_USERNAME=sonar
       - SONARQUBE_JDBC_PASSWORD=sonar
 #      - SONAR_SECURITY_REALM=LDAP
