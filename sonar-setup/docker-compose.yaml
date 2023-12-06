@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     container_name: sonarqube
     depends_on:
-      - sonarqube_db
+      - sonarqube-db
     ports:
       - "9000:9000"
     networks:
@@ -32,9 +32,9 @@ services:
       - /data/sonar-data/data:/opt/sonarqube/data
       - /data/sonar-data/extensions:/opt/sonarqube/extensions
       - /data/sonar-data/logs:/opt/sonarqube/logs
-  sonarqube_db:
+  sonarqube-db:
     image: postgres
-    container_name: sonarqube_db
+    container_name: sonarqube-db
     restart: unless-stopped
     networks:
       - sonar-net
