@@ -3,3 +3,5 @@ volume/*
 env.list
 cert/*
 keycloak-setup/data/*
+artifactory-setup/data/*
+artifactory-setup/var/*

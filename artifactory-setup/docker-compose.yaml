@@ -1,0 +1,72 @@
+  docker pull releases-docker.jfrog.io/jfrog/artifactory-jcr:latest
+version: '3'
+services:
+  artifactory:
+    image: releases-docker.jfrog.io/jfrog/artifactory-pro:latest
+    container_name: artifactory
+    ports:
+      - 8081:8081 # for artifactory communication
+      - 8085:8085 # for artifactory federation communication
+    volumes:
+      - ./var:/var/opt/jfrog/artifactory
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+    networks:
+      - artifact-network
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - artifactory
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt:/etc/letsencrypt
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+    networks:
+      - artifact-network
+  postgres:
+    image: postgres:16.0
+    container_name: postgresql
+    environment:
+      - POSTGRES_DB=artifactory
+      - POSTGRES_USER=artifactory
+      - POSTGRES_PASSWORD=Password123
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+    networks:
+      - artifact-network
+networks:
+  artifact-network:
+    driver: bridge
