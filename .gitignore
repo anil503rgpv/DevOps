@@ -2,3 +2,4 @@ volume/*
 .idea/*
 env.list
 cert/*
+keycloak-setup/data/*
