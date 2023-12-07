@@ -51,7 +51,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - /etc/letsencrypt:/etc/letsencrypt
     depends_on:
-      - sonarqube
+      - keycloak
     networks:
       - keycloak-network
 
