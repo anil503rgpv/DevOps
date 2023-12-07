@@ -1,4 +1,3 @@
-  docker pull releases-docker.jfrog.io/jfrog/artifactory-jcr:latest
 version: '3'
 services:
   artifactory:
