@@ -6,6 +6,7 @@ services:
     ports:
       - 8081:8081 # for artifactory communication
       - 8085:8085 # for artifactory federation communication
+      - 8082:8082
     volumes:
       - ./var:/var/opt/jfrog/artifactory
     restart: always
