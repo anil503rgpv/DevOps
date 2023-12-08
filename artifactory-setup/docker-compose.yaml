@@ -1,7 +1,8 @@
 version: '3'
 services:
   artifactory:
-    image: releases-docker.jfrog.io/jfrog/artifactory-pro:latest
+#    image: releases-docker.jfrog.io/jfrog/artifactory-pro:latest
+    image: releases-docker.jfrog.io/jfrog/artifactory-oss:latest
     container_name: artifactory
     ports:
       - 8081:8081 # for artifactory communication
