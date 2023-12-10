@@ -15,3 +15,6 @@ sudo ./docker-ununtu.sh < username > < password >
 * make installed
 * certbot installed
 * create new linux username `distro` password `distro` by default
+
+# Docker Cleanup
+* Run `./docker-cleanup.sh`

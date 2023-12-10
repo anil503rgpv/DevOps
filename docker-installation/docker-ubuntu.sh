@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Stop asking user for restart"
+sudo echo "\$nrconf{restart} = 'a';" >> /etc/needrestart/needrestart.conf
 # Add Docker's official GPG key:
 echo "Add Docker's official GPG key:"
 sudo apt-get update
