@@ -26,9 +26,16 @@ sudo systemctl enable docker
 sudo systemctl restart docker
 
 DOCKER_USER=$1
+DOCKER_PASSWORD=$2
 DEFAULT_DOCKER_USER="distro"
+DEFAULT_DOCKER_PASSWORD="distro"
+
 if [ -z "$DOCKER_USER" ]; then
 	DOCKER_USER=$DEFAULT_DOCKER_USER
+fi
+
+if [ -z "$DOCKER_PASSWORD" ]; then
+	DOCKER_PASSWORD=DEFAULT_DOCKER_PASSWORD
 fi
 
 if id "$DOCKER_USER" >/dev/null 2>&1; then
@@ -38,8 +45,10 @@ else
         echo "creating $DOCKER_USER group"
         sudo addgroup -gid 1300 $DOCKER_USER
         echo "Creating $DOCKER_USER user"
-        sudo adduser -u 1100 -gid 1300 $DOCKER_USER
+        sudo adduser -u 1100 -gid 1300 -m -s /bin/bash $DOCKER_USER
         echo "adding docker group to user $DOCKER_USER"
+        # Set the password
+        echo "$DOCKER_USER:$DOCKER_PASSWORD" | sudo chpasswd
         sudo usermod -aG docker $DOCKER_USER
         echo "Providing root permision to to user $DOCKER_USER"
         sudo echo "$DOCKER_USER ALL=(ALL) ALL" >> /etc/sudoers
