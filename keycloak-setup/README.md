@@ -1,8 +1,8 @@
 # KeyCloak-Production setup using docker compose
-
+[Documentation](https://www.keycloak.org/guides#getting-started)
 ## Prerequisite
 * Docker software should be installed on host
-  * Run `../docker-installation/docker-ubuntu.sh` file to install docker and `distro` ubuntu user
+  * Copy and Run [docker-ubuntu.sh](../docker-installation/docker-ubuntu.sh) file to install docker and create `distro` ubuntu user
 * Either use docker volume or host relative path to store permanent volume of database
 * Get a domain with access to update record or you may use https://www.duckdns.org/domains for getting temp domain
 
@@ -17,7 +17,6 @@ Install Certbot and obtain an SSL certificate for your domain. make sure your ho
   # Obtain SSL certificate
   # sudo certbot certonly --standalone -d <Keycloak server domain> -m <your email> --agree-tos
   sudo certbot certonly --standalone -d keycloak-shiv.duckdns.org -m test@gamil.com --agree-tos
-
 ```
 
 ## Before Running docker compose changes must be done set-env.sh file run the same
