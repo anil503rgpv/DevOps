@@ -37,7 +37,7 @@ if [ -z "$DOCKER_USER" ]; then
 fi
 
 if [ -z "$DOCKER_PASSWORD" ]; then
-	DOCKER_PASSWORD=DEFAULT_DOCKER_PASSWORD
+	DOCKER_PASSWORD=$DEFAULT_DOCKER_PASSWORD
 fi
 
 if id "$DOCKER_USER" >/dev/null 2>&1; then
