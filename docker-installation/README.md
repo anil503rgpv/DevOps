@@ -1,5 +1,7 @@
 # Docker installation in Ubuntu
 ```shell
+# Stop asking user for restart
+sudo echo "\$nrconf{restart} = 'a';" >> /etc/needrestart/needrestart.conf
 # create new file and copy paste everything on the same
 sudo vi docker-ubuntu.sh 
 # add execution permission
