@@ -18,7 +18,10 @@ Install Certbot and obtain an SSL certificate for your domain. make sure your ho
   # sudo certbot certonly --standalone -d <Keycloak server domain> -m <your email> --agree-tos
   sudo certbot certonly --standalone -d keycloak-shiv.duckdns.org -m test@gamil.com --agree-tos
 ```
-
+## Clone [Devops](https://github.com/anil503rgpv/DevOps.git) repo
+```
+git clone https://github.com/anil503rgpv/DevOps.git
+```
 ## Before Running docker compose changes must be done set-env.sh file run the same
 ```shell
 # update below property as per setup
