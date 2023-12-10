@@ -1,6 +1,16 @@
 # Mail Server setup
-<span style="color: RED;"> <b>Note</b>: Its not yet ready for use</span>
-
+```diff
+- Note: Its not yet ready for use
+```
+<!--
+    ```diff
+    - Note: Its not yet ready for use
+    + text in green
+    ! text in orange
+    # text in gray
+    @@ text in purple (and bold)@@
+    ```
+-->
 ```
     mkdir /mailu
     cd /mailu
