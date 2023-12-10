@@ -40,7 +40,7 @@ services:
       KC_PROXY: edge
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: $KEYCLOAK_ADMIN_PASSWORD
-      KEYCLOAK_FRONTEND_URL: "https://shivaantainfotech.com/auth"
+      KEYCLOAK_FRONTEND_URL: $KEYCLOAK_FRONTEND_URL
   nginx:
     image: nginx:latest
     container_name: nginx
