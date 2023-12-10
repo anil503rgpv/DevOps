@@ -1,4 +1,4 @@
-# Keycloal Server setup
+# Keycloak Server setup
 ## Please Check Keycloak [README.md](./keycloak-setup/README.md)
 ---
 # Sonar Server setup
