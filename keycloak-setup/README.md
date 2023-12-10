@@ -35,9 +35,9 @@ source ./set-env.sh
 ```
 Check below property for nginx.conf and update correct server host 
 ```config
-server_name **keycloak-shiv.duckdns.org**;
-ssl_certificate "/etc/letsencrypt/live/**keycloak-shiv.duckdns.org**/fullchain.pem";
-ssl_certificate_key "/etc/letsencrypt/live/**keycloak-shiv.duckdns.org**/privkey.pem";
+server_name keycloak-shiv.duckdns.org;
+ssl_certificate "/etc/letsencrypt/live/keycloak-shiv.duckdns.org/fullchain.pem";
+ssl_certificate_key "/etc/letsencrypt/live/keycloak-shiv.duckdns.org/privkey.pem";
 ```
 
 ## Running keycloak server
