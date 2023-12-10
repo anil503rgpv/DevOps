@@ -1,8 +1,8 @@
 # Keycloal Server setup
-## Please Check [Keycloak README.md](./keycloak-setup/README.md)
+## Please Check Keycloak [README.md](./keycloak-setup/README.md)
 ---
 # Sonar Server setup
-## Please Check [Sonar README](./sonar-setup/README.md)
+## Please Check Sonar [README.md](./sonar-setup/README.md)
 ---
 # Jenkins configuration as code setup
 
