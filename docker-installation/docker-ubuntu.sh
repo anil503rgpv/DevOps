@@ -7,7 +7,7 @@ echo "Add Docker's official GPG key:"
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg -y
 sudo install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg -y
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 # Add the repository to Apt sources:
@@ -45,9 +45,9 @@ if id "$DOCKER_USER" >/dev/null 2>&1; then
         sudo usermod -aG docker $DOCKER_USER
 else
         echo "creating $DOCKER_USER group"
-        sudo addgroup -gid 1300 $DOCKER_USER
+        sudo groupadd --gid 1300 $DOCKER_USER
         echo "Creating $DOCKER_USER user"
-        sudo adduser -u 1100 -gid 1300 -m -s /bin/bash $DOCKER_USER
+        sudo useradd --uid 1100 --gid 1300 -m -s /bin/bash $DOCKER_USER
         echo "adding docker group to user $DOCKER_USER"
         # Set the password
         echo "$DOCKER_USER:$DOCKER_PASSWORD" | sudo chpasswd
