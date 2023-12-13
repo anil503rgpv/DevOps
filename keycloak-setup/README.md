@@ -4,7 +4,7 @@
 * Docker software should be installed on host
   * Copy and Run [docker-ubuntu.sh](../docker-installation/docker-ubuntu.sh) file to install docker and create `distro` ubuntu user
 * Either use docker volume or host relative path to store permanent volume of database
-* Get a domain with access to update record or you may use https://www.duckdns.org/domains for getting temp domain
+* Get a domain with access to update record, or you may use https://www.duckdns.org/domains for getting temp domain
 
 ## Obtain SSL Certificate using Certbot:
 Install Certbot and obtain an SSL certificate for your domain. make sure your host should accessible from internet
