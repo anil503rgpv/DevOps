@@ -41,6 +41,14 @@ services:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: $KEYCLOAK_ADMIN_PASSWORD
       KEYCLOAK_FRONTEND_URL: $KEYCLOAK_FRONTEND_URL
+      # SMTP Configuration
+      KC_MAIL_SMTP_SERVER: $SMTP_SERVER
+      KC_MAIL_SMTP_PORT: $SMTP_PORT
+      KC_MAIL_SMTP_FROM: $SMTP_FROM
+      KC_MAIL_SMTP_USER: $SMTP_USER
+      KC_MAIL_SMTP_PASSWORD: $SMTP_PASSWORD
+      KC_MAIL_SMTP_AUTH: true
+      KC_MAIL_SMTP_SSL: true
   nginx:
     image: nginx:latest
     container_name: nginx
